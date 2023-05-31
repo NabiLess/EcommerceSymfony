@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{product.name|upper}} - LeBipBip{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        
+
+            <div class="col-md-5"> 
+                <img src="/uploads/{{product.illustration}}" alt="{{product.name}}" class="img-fluid">
+            </div>
+            <div class="col-md-7 my-auto">
+                <div class="product-item text-center">
+                   
+                     <h3>{{product.name|upper}}</h3>
+                    <blockquote>{{product.subtitle}}</blockquote>
+                    <blockquote class="product-price">{{(product.price / 100)|number_format(2,',','.')}} €</blockquote>
+                    <p>{{product.description}}</p>
+                    <a href="{{ path('add_cart', {'id' : product.id }) }}" class="btn btn-primary">Ajouter au panier</a>
+                </div>
+            </div>
+    </div>
+    <hr>
+    <h3>Nos meilleurs produits</h3>
+        <div class="row">
+            {% for product in products %}
+
+                    <div class="col-md-2">
+                       {% include "product/single_product.html.twig" %}
+                    </div>
+                {% endfor %}
+        </div><!-- /.row -->
+{% endblock %}

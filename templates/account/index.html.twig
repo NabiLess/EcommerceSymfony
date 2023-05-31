@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Compte - LeBipBIP{% endblock %}
+
+{% block content %}
+    <h1>Mon compte</h1>
+   
+    <p>Bienvenue {{ app.user.firstname }} dans votre compte. <br> Ici vous allez pouvoir gérer vos informations personelles.</p><br>
+    {% if is_granted('ROLE_ADMIN') %}
+         <a href="/admin" class="btn btn-info">Accéder au backoffice en tant qu'administrateur ?</a>
+    {% endif %} <hr>
+ 
+    <div class="row">
+        <div class="col-md-4">
+            
+            <div class="account-item text-center">
+                <img src="{{asset('assets/img/lock (1).png')}}" alt="Modifier Mot de passe"><br>
+                <a href="{{path('account_password')}}">Modifier Mot de passe</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="account-item text-center">
+                <img src="{{asset('assets/img/address.png')}}" alt="Mes Adresses"><br>
+                <a href="{{path('account_adress')}}">Mes Adresses</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="account-item text-center">
+                <img src="{{asset('assets/img/purchase.png')}}" alt="Mes Commandes"><br>
+                <a href="{{path('account_order')}}">Mes Commandes</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

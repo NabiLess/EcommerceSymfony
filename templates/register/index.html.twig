@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}S'inscire - LeBipBip{% endblock %}
+
+{% block content %}
+
+    {% if notification %}
+    <div class="alert alert-info">
+        {{notification}}
+    </div>
+    <hr>
+    {% endif %}
+    <h1>Inscription</h1><br>
+
+    {{form(form)}}
+
+{% endblock %}

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Les meilleurs commerçants de votre voisinage">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>{% block title %}LeBipBip{% endblock %}</title>
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+
+    
+
+    <!-- Bootstrap core CSS -->
+    <link href=" {{ asset('assets/css/bootstrap.min.css') }} " rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/css/lebipbip.css') }}">
+    {% block javascript %}{% endblock %}
+
+
+    <link href=" {{ asset('assets/css/carousel.css') }}" rel="stylesheet">
+</head>
+<body>
+<header> 
+    <nav class="navbar navbar-expand-md fixed-top navbar-light" style="background-color: rgba(255, 255, 255, 0.918);" >
+        <a class="navbar-brand mr-5" href="{{ path('home')}}"><img src="{{asset('assets/img/bipbip.svg')}}" alt="" class="img-fluid">LeBipBip</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse ml-5" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('products')}}">Nos Produits <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('contact')}}">Contact<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        <div class="navbar-coonect-custom">
+            {% if app.user %}
+            <a href="{{ path('account')}}">Mon Compte <small>( {{app.user.firstname|capitalize}} ) </small></a> | <a href="{{ path('app_logout')}}">Déconnexion</a>
+
+            {% else %}
+            <a href="{{ path('app_login')}}">Connexion</a> | <a href="{{ path('register')}}">S'inscrire</a>
+            {% endif %}
+            | <a href="{{ path('cart')}}"><img src="{{asset('assets/img/ajouter-au-chariot.png')}}" alt="">{{ app.session.get('ecart').nbprod }}</a>
+        </div>
+        </div>
+    </nav>
+</header>
+<hr>
+<main role="main" >
+    {% block carousel %}
+    {% endblock %} <br><br><br>
+    <div class="container marketing   {% if block('carousel') is not defined %} mt-5 {% endif %}">
+        {% block content %}
+        {% endblock %}
+     </div><!-- /.container -->
+   
+    <!-- FOOTER -->
+    <footer class="footer-nav">
+        <p>
+            &copy; 2021-2022 LeBipBIp <br>
+            <small>
+                Vos commerces au plus proche !<br>
+                &middot; <a href="{{ path('rgpd')}}">Mentions légales</a>
+            </small>
+        </p>
+
+    </footer>
+</main>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src=" {{ asset('assets/js/bootstrap.bundle.js') }}"></script>
+</body>
+</html>

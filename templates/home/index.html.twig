@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block carousel %}
+<div class="carousel">
+    <div class="lifestyle-dashboard lifestyle-dashboard-v3 has-webapp-spacing ">
+
+                    <div class="illustration-header">
+                        <div class="header-image">
+                            <img src="{{asset('assets/img/index.svg')}}" alt="">
+                        </div>
+                        <div class="header-meta">
+                            <h3>LeBipBip c'est déjà :</h3>
+                            <br>
+                            <div class="summary-stats">
+                                <div class="summary-stat">
+                                    <span>{{nbProduct}} produits</span>
+                                    <span>De qualité</span>
+                                </div>
+                                <div class="summary-stat">
+                                    <span>{{nbOrder}} commandes</span>
+                                    <span>Passées</span>
+                                </div>
+                                <div class="summary-stat">
+                                    <span>{{nbUser}} clients</span>
+                                    <span>Satisfaits</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+       <h3>Nos meilleurs produits</h3>
+        <div class="row">
+            {% for product in products %}
+
+                    <div class="col-md-3">
+                       {% include "product/single_product.html.twig" %}
+                    </div>
+                {% endfor %}
+        </div><!-- /.row -->
+
+
+
+        <!-- START THE FEATURETTES -->
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">Une équipe <span class="text-muted">de vrais professionels à vos coté.</span></h2>
+                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            </div>
+            <div class="col-md-5">
+                <img src="{{asset('assets/img/pexels-cottonbro-4620612.jpg')}}" alt="La proximoité notre maître mot" class="img-fluid">
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2 class="featurette-heading">N'oubliez pas <span class="text-muted">de venir nous rendre viste dans nos boutique partenaires!</span></h2>
+                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                 <img src="{{asset('assets/img/pexels-robin-1020370.jpg')}}" alt="Une ouverture 7j/7 24h/24" class="img-fluid">
+            </div>
+        </div>
+
+
+        
+
+        <hr class="featurette-divider">
+
+        <!-- /END THE FEATURETTES -->
+
+{% endblock %}

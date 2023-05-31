@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mot de passe oublié - LeBipBip{% endblock %}
+
+{% block content %}
+       <div class="block-small"> 
+       {% for message in app.flashes('notice') %}
+            <div class="alert alert-info">{{message}}</div>
+        {% endfor %}
+       <h2>Réinitialiser mon mot de passe</h2>
+        {% for message in app.flashes('notice') %}
+            <div class="alert alert-info">{{message}}</div>
+        {% endfor %}
+        {{form(form)}}
+{% endblock %}

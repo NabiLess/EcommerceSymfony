@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+{% block title %}Ma commande- LeBipBIP{% endblock %}
+
+{% block content %}
+    <h1>Ma commande n° {{order.reference}}</h1>
+       - <a href="{{path('account_order')}}">Retour</a> <br><br>
+      
+   
+   
+    {% if order|length == 0 %} 
+    <hr>
+       <p class="text-center"> 
+            Vous n'avez aucune commandes de passées... <a href="{{path('products')}}">Cliquez ici</a> pour passé votre premiere commandes!!.
+        </p>
+    {% else %}
+      <p>
+            Référence : <span class="badge badge-secondary">{{order.reference}}</span>
+            Passée le : {{order.createdAt|format_datetime('medium', 'short', locale='fr')}} <br>
+            Statut : <span class="badge badge-secondary"> {% if order.state == 1 %}
+                        Paiement Validée
+                     {% elseif order.state == 2 %}
+                        Préparation en cours
+                     {% elseif order.state == 3 %}
+                        Livraison en cours
+                {% endif %}</span> <br>
+            Transporteur : {{order.carrierName}} <br>
+            Total : {{((order.carrierprice + order.total) / 100)|number_format(2,',','.')}} € 
+      </p>   
+                
+               
+              
+                
+    <table class="table table-hover mt-5">
+        <thead>
+          <tr>
+            <th scope="col">Produit</th>
+            <th scope="col">Quantité</th>
+            <th scope="col">Prix produit</th>
+            <th scope="col">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for product in order.orderDetails %}
+              <tr>
+                <td scope="row">{{product.product}}</td>
+                <td >{{product.quantity}}</td>
+                <td>{{(product.price / 100)|number_format(2,',','.')}} €</td>
+                <td>{{(product.total / 100)|number_format(2,',','.')}} € </td>
+              </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+      <div class="text-right">
+        <p>
+          <strong>Prix total produits : </strong>{{(order.total / 100)|number_format(2,',','.')}} €  <br>
+          <strong>Livraison : </strong> {{(order.carrierPrice / 100)|number_format(2,',','.')}} €<br>
+          <strong>Total : </strong>{{((order.carrierPrice + order.total) / 100)|number_format(2,',','.')}} € <br>
+        </p>
+      </div>
+   
+  
+    
+    {% endif %}
+    
+{% endblock %}

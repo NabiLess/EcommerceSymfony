@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% block title %}Mes Adresses- LeBipBIP{% endblock %}
+
+{% block content %}
+    <a href="{{path('account_adress_add')}}" class="btn btn-info btn-sm float-right">Ajouter une adresse</a>
+    <h1>Mes Adresses</h1>
+       - <a href="{{path('account')}}">Retourner à mon compte</a>
+       <hr>
+   
+   
+    {% if  app.user.adresses|length == 0 %}
+       <p class="text-center"> 
+            Vous n'avez aucune adresse d'ajouté... <a href="{{path('account_adress_add')}}">Cliquez ici</a> pour en Ajouter.
+        </p>
+    {% else %}
+    <div class="row">
+            {% for adress in app.user.adresses %}
+                <div class="col-md-4">
+                        
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{adress.name}}</h5>
+                            <p class="card-text">
+                                {{adress.address}} <br>
+                                {{adress.postal}} - {{adress.city}} - {{adress.country}}
+
+                            </p>
+                            <a href="{{path('account_adress_edit', {'id' : adress.id} )}}" class="btn btn-info btn-sm">Modifier</a> | <a href="{{path('account_adress_delete', {'id' : adress.id} )}}"" class="btn btn-info btn-sm">Supprimer</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+    </div>
+    
+    {% endif %}
+    
+{% endblock %}
